@@ -1,4 +1,4 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 
 .header {
   width: 100%;
@@ -22,21 +22,18 @@
   &-title {
     font-size: 16px;
     color: #282828;
-
-    span {
-      cursor: pointer;
-
-      & + span {
+    ul {
+      display: flex;
+      li {
         margin-left: 62px;
+        cursor: pointer;
       }
-
-      &.active {
+      .active {
         font-weight: bold;
         position: relative;
         pointer-events: none;
-
         &::after {
-          content: '';
+          content: "";
           height: 4px;
           background: #fa9124;
           position: absolute;
@@ -89,7 +86,7 @@
         border-bottom: 1px solid #eeeeee;
 
         &.active {
-          color: #FA9124;
+          color: #fa9124;
         }
       }
     }

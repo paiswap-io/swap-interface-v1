@@ -13,6 +13,7 @@ import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
+import IndexView from './Index/index'
 import Migration from './Migration'
 import { RedirectPathToSwapOnly } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
@@ -135,6 +136,7 @@ export default function App() {
                   <AppHeader />
                   <Web3ReactManager>
                     <Switch>
+                      <Route exact strict path="/" component={IndexView} />
                       <Route exact strict path="/swap" component={Swap} />
                       <Route exact strict path="/find" component={PoolFinder} />
                       <Route exact strict path="/pool" component={Pool} />

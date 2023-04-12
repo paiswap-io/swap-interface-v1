@@ -1,0 +1,53 @@
+.index-view {
+  .index-banner {
+    width: 1536px;
+    margin: 0 auto;
+  }
+  .index-stake {
+    width: 1536px;
+    margin: 0 auto;
+    margin-top: 80px;
+    ul {
+      display: flex;
+      justify-content: space-between;
+      li {
+        width: calc(50% - 28px);
+        padding: 30px 52px;
+        background: linear-gradient(175deg, #fff9f4, #fbe0c7);
+        border-radius: 10px;
+        height: 378px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0 0 30px 0 rgba(186, 184, 191, 0.35);
+        .total-title {
+          font-size: 24px;
+          color: #403f45;
+          font-weight: 700;
+          font-family: "Microsoft YaHei UI";
+        }
+        .title-bg {
+          padding: 8px 30px;
+          background-color: #fec590;
+          font-size: 20px;
+        }
+        .amount-public {
+          font-size: 24px;
+          font-family: "DIN Alternate";
+          color: #fa9124;
+          font-weight: 700;
+        }
+        button {
+          width: 208px;
+          height: 42px;
+          background: linear-gradient(180deg, #ffb769, #fc9f29);
+          font-size: 20px;
+          color: white;
+          border-radius: 25px;
+        }
+      }
+    }
+  }
+}

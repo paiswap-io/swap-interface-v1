@@ -9,6 +9,8 @@ import { isMobile } from 'react-device-detect'
 import { injected } from '../connectors'
 import { NetworkContextName } from '../constants'
 
+
+
 export function useActiveWeb3React(): Web3ReactContextInterface<Web3Provider> & { chainId?: ChainId } {
   const context = useWeb3ReactCore<Web3Provider>()
   const contextNetwork = useWeb3ReactCore<Web3Provider>(NetworkContextName)
@@ -86,3 +88,18 @@ export function useInactiveListener(suppress = false) {
     return undefined
   }, [active, error, suppress, activate])
 }
+
+// export const useHome = () => {
+//   const MyContract = new web3.eth.Contract(ABI, PISTAKING_CONTRACT_ADDRESS)
+//   const totalsupply = () => {
+//     MyContract.methods
+//       .getTotalSupply()
+//       .call()
+//       .then((result:unknown) =>{
+//         console.log(web3.utils.fromWei(result))
+//       })
+//   };
+//   return {
+//     totalSupply:totalsupply
+//   }
+// }
