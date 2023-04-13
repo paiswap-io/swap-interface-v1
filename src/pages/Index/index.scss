@@ -46,8 +46,15 @@
           font-size: 20px;
           color: white;
           border-radius: 25px;
+          transition: .3s all;
+        }
+        button:hover {
+          opacity: 0.8;
         }
       }
     }
   }
+}
+.ant-spin-dot-item{
+    background-color: #fc9f29!important;
 }

@@ -1,4 +1,5 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@paiswap/sdk'
+import { crossChainABI, CROSS_CONTRACCT_ADDRESS, gasl2, gasPricel2 } from './home'
 
 
 export const ROUTER_ADDRESS = '0x816C793B93292fB4Ea5ADD2DfC5615f580Defc16'
