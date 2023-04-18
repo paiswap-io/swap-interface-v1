@@ -80,8 +80,10 @@ const IndexView = (): ReactElement<ReactNode> => {
     win.changeNet = changeNet;
     useEffect(() => {
         setTimeout(() => {
-            setPoolList(HomeTool.chainId === 8007736 ? Main : Dev)
-        }, 500)
+            const { ethereum } : any = window;
+            const chainId: number = HomeTool.web3.utils.hexToNumber(ethereum.chainId);
+            setPoolList(chainId === 8007736 ? Main : Dev)
+        }, 800)
     }, []);
     //Staked
     const [staked, setStaked] = useState<boolean>(false);
