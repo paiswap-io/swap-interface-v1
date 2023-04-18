@@ -12,11 +12,13 @@ import Button from "../ConnectButton";
 import ConnectWallet from "../ConnectWallet";
 import WalletOption from "../WalletOption";
 import logo from "../../assets/images/logo.png";
+import pi from "../../assets/images/pi.jpg";
 import { useHistory, useLocation } from "react-router-dom";
 import { subSplit } from "../../util";
-import { Menu, Dropdown } from "antd";
+import { Menu, Dropdown, Spin } from "antd";
 import useAuth from "hooks/useAuth";
 import burger from "../../assets/images/burger.png";
+import HomeTool from "../../utils/index_c";
 
 function Index(props) {
   const history = useHistory();
@@ -24,14 +26,30 @@ function Index(props) {
   const [showMenu, setShowMenu] = useState(false);
   const { account } = useWeb3React();
   const { logout } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(0);
-
-  window.ethereum &&
-    window.ethereum.on("chainChanged", (_chainId) => window.location.reload());
+  useEffect(() => {
+    const { location } = history;
+    switch (location.pathname) {
+      case "/":
+        setActive(0);
+        break;
+      case "/pool":
+        setActive(1);
+        break;
+      case "/swap":
+        setActive(2);
+        break;
+      default:
+        setActive(0);
+    }
+  }, []);
+  // window.ethereum &&
+  //   window.ethereum.on("chainChanged", (_chainId) => window.location.reload());
 
   window.ethereum &&
     window.ethereum.on("accountsChanged", (accounts) => {
-      console.log(accounts);
+      window.location.reload();
     });
 
   const nameList = {
@@ -45,10 +63,10 @@ function Index(props) {
       name: "HOME",
       url: "/",
     },
-    {
-      name: "POOL",
-      url: "/pool",
-    },
+    // {
+    //   name: "POOL",
+    //   url: "/pool",
+    // },
     {
       name: "SWAP",
       url: "/swap",
@@ -78,9 +96,19 @@ function Index(props) {
                 return (
                   <li
                     key={`menu-${item.name}`}
-                    onClick={() => {
-                      history.push(item.url);
-                      setActive(index);
+                    onClick={async () => {
+                      // const result = await HomeTool.switchChain(
+                      //   item.name === "HOME" ? 8007736 : 2099156
+                      // );
+                      // if(result != null){
+                      //   return
+                      // }
+                      setLoading(true);
+                      setTimeout(() => {
+                        setLoading(false);
+                        history.push(item.url);
+                        setActive(index);
+                      }, item.name === 'SWAP' ? 1500 : 200);
                     }}
                     className={`${active === index ? "active" : ""}`}
                   >
@@ -144,6 +172,14 @@ function Index(props) {
               );
             })}
           </ul>
+        </div>
+      )}
+      {loading && (
+        <div className="waiting-route">
+          <div className="loading">
+            <Spin size="large" />
+            <p>Please wait...</p>
+          </div>
         </div>
       )}
     </header>

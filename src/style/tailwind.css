@@ -67,7 +67,9 @@ body {
 		'Apple Color Emoji',
 		'Segoe UI Emoji';
 }
-
+.ant-scrolling-effect{
+  width: 100%!important;
+}
 /*
 Grouping content
 ================
