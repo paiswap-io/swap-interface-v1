@@ -10,12 +10,10 @@ import "./index.scss";
 import { useWeb3React } from "@web3-react/core";
 import Button from "../ConnectButton";
 import ConnectWallet from "../ConnectWallet";
-import WalletOption from "../WalletOption";
 import logo from "../../assets/images/logo.png";
-import pi from "../../assets/images/pi.jpg";
 import { useHistory, useLocation } from "react-router-dom";
 import { subSplit } from "../../util";
-import { Menu, Dropdown, Spin } from "antd";
+import { Menu, Dropdown, Spin, Select } from "antd";
 import useAuth from "hooks/useAuth";
 import burger from "../../assets/images/burger.png";
 import HomeTool from "../../utils/index_c";
@@ -28,22 +26,6 @@ function Index(props) {
   const { logout } = useAuth();
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(0);
-  useEffect(() => {
-    const { location } = history;
-    switch (location.pathname) {
-      case "/":
-        setActive(0);
-        break;
-      case "/pool":
-        setActive(1);
-        break;
-      case "/swap":
-        setActive(2);
-        break;
-      default:
-        setActive(0);
-    }
-  }, []);
   // window.ethereum &&
   //   window.ethereum.on("chainChanged", (_chainId) => window.location.reload());
 
@@ -74,10 +56,9 @@ function Index(props) {
   ];
 
   const onClick = ({ key }) => {
-    if (key === "logout") {
-      logout();
-      window.localStorage.removeItem("connectorId");
-    }
+    logout();
+    window.localStorage.removeItem("connectorId");
+    window.location.reload();
   };
 
   const menu = (
@@ -85,6 +66,34 @@ function Index(props) {
       <Menu.Item key="logout">Disconnect Wallet</Menu.Item>
     </Menu>
   );
+  const [network, setNetwork] = useState("1");
+  const selectNet = async (value) => {
+    const result = await HomeTool.switchChain(
+      +value === 1 ? 8007736 : 10067275
+    );
+    !setShowMenu(false);
+    !result && setNetwork(value);
+    !result && window.changeNet(+value);
+  };
+  useEffect(() => {
+    const { location } = history;
+    switch (location.pathname) {
+      case "/":
+        setActive(0);
+        break;
+      // case "/pool":
+      //   setActive(1);
+      //   break;
+      case "/swap":
+        setActive(1);
+        break;
+      default:
+        setActive(0);
+    }
+    setTimeout(() => {
+      setNetwork(HomeTool.chainId === 8007736 ? "1" : "2");
+    }, 500);
+  }, []);
   return (
     <header className="flex items-center header">
       <div className="flex items-center justify-between header-wrap flex-nowrap">
@@ -104,11 +113,14 @@ function Index(props) {
                       //   return
                       // }
                       setLoading(true);
-                      setTimeout(() => {
-                        setLoading(false);
-                        history.push(item.url);
-                        setActive(index);
-                      }, item.name === 'SWAP' ? 1500 : 200);
+                      setTimeout(
+                        () => {
+                          setLoading(false);
+                          history.push(item.url);
+                          setActive(index);
+                        },
+                        item.name === "SWAP" ? 1500 : 200
+                      );
                     }}
                     className={`${active === index ? "active" : ""}`}
                   >
@@ -127,7 +139,26 @@ function Index(props) {
             className="items-center hidden mt-4 sm:mt-0 sm:flex"
             id="header-right"
           >
-            <WalletOption />
+            {/* <WalletOption /> */}
+            <div className="select-network">
+              <Select
+                defaultValue="1"
+                style={{ width: 120 }}
+                value={network}
+                onChange={selectNet}
+                size="large"
+                options={[
+                  {
+                    value: "1",
+                    label: "Mainnet",
+                  },
+                  {
+                    value: "2",
+                    label: "Testnet",
+                  },
+                ]}
+              />
+            </div>
             {account ? (
               <Dropdown
                 overlay={menu}
@@ -155,23 +186,80 @@ function Index(props) {
 
       {showMenu && (
         <div className="block open-menu sm:hidden">
-          <div className="flex items-center justify-between">
-            <img src={logo} alt="piswap" className="logo" />
-            <span className="close" onClick={() => setShowMenu(false)}>
-              &times;
-            </span>
+          <div
+            className="menu-mask"
+            onClick={() => {
+              setShowMenu(false);
+            }}
+          ></div>
+          <div className="menu-inner">
+            <div className="flex items-center justify-between">
+              <img src={logo} alt="piswap" className="logo" />
+              <span className="close" onClick={() => setShowMenu(false)}>
+                &times;
+              </span>
+            </div>
+            <ul className="cell-list">
+              {MenuList.map((item, index) => {
+                return (
+                  <li
+                    key={`menu-${item.name}`}
+                    onClick={async () => {
+                      // const result = await HomeTool.switchChain(
+                      //   item.name === "HOME" ? 8007736 : 2099156
+                      // );
+                      // if(result != null){
+                      //   return
+                      // }
+                      setLoading(true);
+                      setShowMenu(false);
+                      setTimeout(
+                        () => {
+                          setLoading(false);
+                          history.push(item.url);
+                          setActive(index);
+                        },
+                        item.name === "SWAP" ? 1500 : 200
+                      );
+                    }}
+                    className={`${active === index ? "active" : ""}`}
+                  >
+                    {item.name}
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="oper-drop">
+              <div className="select-network">
+                <Select
+                  defaultValue="1"
+                  style={{ width: 120 }}
+                  value={network}
+                  onChange={selectNet}
+                  size="large"
+                  options={[
+                    {
+                      value: "1",
+                      label: "Mainnet",
+                    },
+                    {
+                      value: "2",
+                      label: "Testnet",
+                    },
+                  ]}
+                />
+              </div>
+              {account ? (
+                <button onClick={onClick}>Disconnect wallet</button>
+              ) : (
+                <ConnectWallet>
+                  <button className="connect-wallet-side">
+                    Connect Wallet
+                  </button>
+                </ConnectWallet>
+              )}
+            </div>
           </div>
-          <ul className="cell-list">
-            {Object.keys(nameList).map((name) => {
-              return (
-                <li className={name === "/swap" ? "active" : ""} key={name}>
-                  <a href={name === "/l2wallet" ? "/l2wallet?withdraw" : name}>
-                    {nameList[name]}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
         </div>
       )}
       {loading && (

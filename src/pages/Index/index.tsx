@@ -5,7 +5,7 @@ import IndexBanner from './components/banner';
 import IndexStake from './components/stake';
 import HomeTool from '../../utils/index_c';
 import './index.scss';
-import { Radio, RadioChangeEvent, Switch } from "antd";
+import { Switch } from "antd";
 
 interface Pool {
     p_address: string,
@@ -65,20 +65,27 @@ const IndexView = (): ReactElement<ReactNode> => {
             HomeTool.switchChain(8007736);
         }
     }, []);
-    const [poolList, setPoolList] = useState<Pool[]>(HomeTool.chainId === 8007736 ? Main : Dev);
+    const [poolList, setPoolList] = useState<Pool[]>([]);
     //切换网络
-    const [netWork, setNetWork] = useState<number>(1);
-    const onChange = async (e: RadioChangeEvent) => {
-        await HomeTool.switchChain(e.target.value === 1 ? 8007736 : 10067275);
-        setPoolList(e.target.value === 1 ? Main : Dev)
-        setNetWork(e.target.value);
+    // const [netWork, setNetWork] = useState<number>(1);
+    // const onChange = async (e: RadioChangeEvent) => {
+    //     await HomeTool.switchChain(e.target.value === 1 ? 8007736 : 10067275);
+    //     setPoolList(e.target.value === 1 ? Main : Dev)
+    //     setNetWork(e.target.value);
+    // };
+    const changeNet = (_val: number) => {
+        setPoolList(_val === 1 ? Main : Dev)
     };
+    const win: any = window;
+    win.changeNet = changeNet;
     useEffect(() => {
-        setNetWork(HomeTool.chainId === 8007736 ? 1 : 2)
+        setTimeout(() => {
+            setPoolList(HomeTool.chainId === 8007736 ? Main : Dev)
+        }, 500)
     }, []);
     //Staked
-    const [staked,setStaked] = useState<boolean>(false);
-    const [isStaked,setIsStaked] = useState<number>(0);
+    const [staked, setStaked] = useState<boolean>(false);
+    const [isStaked, setIsStaked] = useState<number>(0);
     const selectStaked = (checked: boolean) => {
         setStaked(checked)
         setIsStaked(checked ? 1 : 0)
@@ -93,13 +100,13 @@ const IndexView = (): ReactElement<ReactNode> => {
                         <Switch checked={staked} size="small" onChange={selectStaked} />
                     </div>
                     {/* Dev */}
-                    <div className="">
+                    {/* <div className="">
                         Network&nbsp;:&nbsp;
                         <Radio.Group onChange={onChange} value={netWork}>
                             <Radio value={1}>Mainnet</Radio>
                             <Radio value={2}>Testnet</Radio>
                         </Radio.Group>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="pool-list">
                     {

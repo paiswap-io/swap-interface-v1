@@ -9,6 +9,7 @@
       background: linear-gradient(180deg, #ffb769, #fc9f29);
       font-size: 20px;
       color: white;
+      font-weight: bold;
     }
   }
   .index-banner {
@@ -310,4 +311,49 @@
 }
 .ant-switch-checked{
   background-color: #ffb769!important;
+}
+@media screen and (max-width:1280px){
+  .index-view{
+    .connect-wallet-box {
+      .connect-wallet-side {
+        height: 38px;
+        font-size: 16px;
+      }
+    }
+    .index-banner{
+      width: 100%;
+    }
+    .pool-con{
+      margin-top: 2rem;
+      padding: 0 1rem;
+      width: 100%;
+      .pool-options{
+        margin-bottom: 1rem;
+      }
+      .pool-list{
+        flex-direction: column;
+        .index-stake{
+          margin-bottom: 1rem;
+          width: 100%;
+          .pool-inner{
+            ul{
+              padding: 1rem;
+              li{
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 2.4rem;
+                p{
+                  margin-bottom: .6rem;
+                }
+              }
+              li:last-child{
+                margin-bottom: 1rem;
+                flex-direction: row;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

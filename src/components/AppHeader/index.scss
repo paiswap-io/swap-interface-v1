@@ -9,7 +9,7 @@
   left: 0;
   background: #fefafc;
   z-index: 90;
-  .waiting-route{
+  .waiting-route {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -19,9 +19,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    .loading{
+    .loading {
       text-align: center;
-      color:#fa9124;
+      color: #fa9124;
     }
   }
   &-wrap {
@@ -36,6 +36,7 @@
   &-title {
     font-size: 16px;
     color: #282828;
+    transform: translateX(20px);
     ul {
       display: flex;
       li {
@@ -58,7 +59,34 @@
       }
     }
   }
-
+  .select-network {
+    margin-right: 20px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 9px 1px rgba(187, 96, 1, 0.3);
+    .ant-select-selector {
+      border: 0;
+      border-radius: 25px;
+      height: 38px !important;
+      .ant-select-selection-item {
+        font-size: 14px;
+      }
+    }
+    .ant-select-focused {
+      .ant-select-selector {
+        border: 0 !important;
+        box-shadow: 0 0 0 2px rgba(179, 106, 30, 0.2) !important;
+      }
+    }
+    .ant-select-selector:hover {
+      border: 0 !important;
+    }
+    .ant-select-open {
+      .ant-select-selector {
+        border: 0 !important;
+        box-shadow: 0 0 0 2px rgba(179, 106, 30, 0.2) !important;
+      }
+    }
+  }
   .burger {
     width: 28px;
     height: 19px;
@@ -66,13 +94,26 @@
 
   .open-menu {
     width: 100%;
-    padding: 40px 20px 15px;
     position: fixed;
-    background: #fff;
     top: 0;
     left: 0;
-    box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.13);
-
+    .menu-inner {
+      width: 100%;
+      padding: 44px 20px 15px;
+      background: #fff;
+      position: relative;
+      z-index: 200;
+      box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.13);
+    }
+    .menu-mask {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      left: 0;
+      top: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 100;
+    }
     .logo {
       width: 129px;
       height: 30px;
@@ -86,7 +127,9 @@
 
     .cell-list {
       width: 100%;
-
+      position: relative;
+      z-index: 200;
+      margin-top: 20px;
       li {
         width: 100%;
         height: 61px;
@@ -96,13 +139,34 @@
         color: #191919;
         display: flex;
         align-items: flex-end;
-        padding-bottom: 10px;
+        line-height: 60px;
         border-bottom: 1px solid #eeeeee;
-
         &.active {
           color: #fa9124;
         }
       }
+      li:last-child{
+        border: 0;
+      }
+    }
+    .oper-drop{
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      button{
+        width: 170px;
+        height: 38px;
+        background: linear-gradient(180deg, #ffb769, #fc9f29);
+        border-radius: 25px;
+        color: white;
+        font-weight: 700;
+      }
     }
   }
+}
+.ant-select-item-option-active {
+  background-color: rgba(179, 106, 30, 0.2) !important;
+}
+.ant-select-item-option-selected {
+  background-color: rgba(179, 106, 30, 0.2) !important;
 }
