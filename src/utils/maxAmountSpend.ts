@@ -1,4 +1,4 @@
-import { CurrencyAmount, ETHER, JSBI } from '@paiswap/sdk'
+import { CurrencyAmount, ETHER, JSBI } from '@alex_7/sdk'
 import { MIN_ETH } from '../constants'
 
 /**

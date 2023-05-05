@@ -17,8 +17,13 @@ interface Chain {
 }
 
 class HomeTool {
+    constructor(){
+        if(!ethereum){
+            message.error('Your browser has not installed the wallet');
+        }
+    }
     public web3 = new Web3(typeof window.web3 !== 'undefined' ? window.web3.currentProvider : currentProvider)
-    public chainId  : number = this.web3.utils.hexToNumber(ethereum.chainId);
+    public chainId  : number = this.web3.utils.hexToNumber(ethereum ? ethereum.chainId : '');
     /**
      * 获取全网质押PI的总数量
      * @returns {*} 全网质押PI的总数，根据精度换算之后的数值 amount

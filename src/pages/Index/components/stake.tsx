@@ -1,9 +1,10 @@
 import { useWeb3React } from '@web3-react/core';
 import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
-import { Spin } from 'antd';
+import { Spin, Tooltip } from 'antd';
 import { numFormat } from '../../../util/index'
 import HomeTool from '../../../utils/index_c';
 import OperModal from './modal';
+import Question from '../../../assets/images/qeustion.png'
 
 interface Total {
     total_supply: string,
@@ -19,7 +20,7 @@ interface Props {
     nAddress: string,
     hot: number,
     real: number,
-    staked:number
+    staked: number
 }
 
 const IndexStake = (props: Props): ReactElement<ReactNode> => {
@@ -62,10 +63,10 @@ const IndexStake = (props: Props): ReactElement<ReactNode> => {
             // getStaking(account as string)
         }
     }, [account]);
-    const is = () : boolean => {
-        if(props.staked === 1){
+    const is = (): boolean => {
+        if (props.staked === 1) {
             return +stake.total_stake > 0 ? false : true
-        }else{
+        } else {
             return false
         }
     }
@@ -80,7 +81,9 @@ const IndexStake = (props: Props): ReactElement<ReactNode> => {
                         <div className='amount-public'>{props.real === 0 ? 'xxx' : !total.total_supply ? <Spin /> : numFormat(total.total_supply)}&nbsp;PI</div>
                     </li>
                     <li>
-                        <p className='total-title'>PNFT mining reward (Total undistributed)</p>
+                        <div className='total-title need-tooltip'>PNFT mining reward <Tooltip placement="top" title="Total undistributed">
+                            <img src={Question} alt="" />
+                        </Tooltip></div>
                         <div className='amount-public'>{props.real === 0 ? 'xxx' : !total.total_balance ? <Spin /> : numFormat(total.total_balance)}</div>
                     </li>
                     <li>

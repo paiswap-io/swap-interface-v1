@@ -91,8 +91,11 @@ function Index(props) {
         setActive(0);
     }
     setTimeout(() => {
-      setNetwork(HomeTool.chainId === 8007736 ? "1" : "2");
-    }, 500);
+      const { ethereum } = window;
+      const chainId = HomeTool.web3.utils.hexToNumber(ethereum.chainId);
+      console.log(chainId);
+      setNetwork(chainId === 8007736 ? "1" : "2");
+    },100);
   }, []);
   return (
     <header className="flex items-center header">
@@ -143,18 +146,18 @@ function Index(props) {
             <div className="select-network">
               <Select
                 defaultValue="1"
-                style={{ width: 120 }}
+                style={{ width: 220 }}
                 value={network}
                 onChange={selectNet}
                 size="large"
                 options={[
                   {
                     value: "1",
-                    label: "Mainnet",
+                    label: "Plian Mainnet Subchain 1",
                   },
                   {
                     value: "2",
-                    label: "Testnet",
+                    label: "Plian Testnet Subchain 1",
                   },
                 ]}
               />

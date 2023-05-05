@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@paiswap/sdk'
+import { ChainId, JSBI, Percent, Token, WETH } from '@alex_7/sdk'
 import { crossChainABI, CROSS_CONTRACCT_ADDRESS, gasl2, gasPricel2 } from './home'
 
 
@@ -38,6 +38,7 @@ export const ETH = new Token(
 
 const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET_CHILD_0]: [WETH[ChainId.MAINNET_CHILD_0]],
+  [ChainId.MAINNET_CHILD_1]: [WETH[ChainId.MAINNET_CHILD_1]],
   [ChainId.TESTNET_CHILD_0]: [WETH[ChainId.TESTNET_CHILD_0]],
 }
 

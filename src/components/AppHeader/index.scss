@@ -36,7 +36,7 @@
   &-title {
     font-size: 16px;
     color: #282828;
-    transform: translateX(20px);
+    transform: translateX(70px);
     ul {
       display: flex;
       li {
@@ -90,6 +90,7 @@
   .burger {
     width: 28px;
     height: 19px;
+    margin-left: 24px;
   }
 
   .open-menu {

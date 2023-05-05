@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@paiswap/sdk'
+import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@alex_7/sdk'
 import { Button, CardBody, AddIcon, Text as UIKitText } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { RouteComponentProps } from 'react-router-dom'

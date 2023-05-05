@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@paiswap/sdk'
+import { Currency, ETHER, Token } from '@alex_7/sdk'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'

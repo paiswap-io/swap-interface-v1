@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@paiswap/sdk'
+import { ChainId, Token } from '@alex_7/sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
@@ -35,6 +35,7 @@ export type TokenAddressMap = Readonly<{ [chainId in ChainId]: Readonly<{ [token
  */
 const EMPTY_LIST: TokenAddressMap = {
   [ChainId.MAINNET_CHILD_0]: {},
+  [ChainId.MAINNET_CHILD_1]: {},
   [ChainId.TESTNET_CHILD_0]: {}
 }
 

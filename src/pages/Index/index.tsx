@@ -37,8 +37,8 @@ const Main: Pool[] = [
 //测试网
 const Dev: Pool[] = [
     {
-        p_address: '0x44E4D91Cc9Cde45ff0b4c746edBf31F030F0B819',
-        n_address: '0x6a2e954633B53b7b75eD10b35EaB10ec31cEb76C',
+        p_address: '0x866beBCE42eeB748C44AACA97a99bc938d12EDe7',
+        n_address: '0xBAB205b56981cd2A73ad949711f02c3d5fE4cF21',
         is_real: 1,
         is_hot: 1
     },
