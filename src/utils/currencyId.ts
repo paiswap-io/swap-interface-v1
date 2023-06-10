@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@alex_7/sdk'
+import { Currency, ETHER, Token } from '@paiswap/sdk'
 
 export function currencyId(currency: Currency): string {
  console.info ("currency",currency)

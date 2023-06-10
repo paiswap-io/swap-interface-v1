@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@alex_7/sdk'
+import { ChainId, JSBI, Percent, Token, WETH } from '@paiswap/sdk'
 import { crossChainABI, CROSS_CONTRACCT_ADDRESS, gasl2, gasPricel2 } from './home'
 
 

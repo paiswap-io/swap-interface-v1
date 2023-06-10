@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, Pair, Token, Trade } from '@alex_7/sdk'
+import { Currency, CurrencyAmount, Pair, Token, Trade } from '@paiswap/sdk'
 import flatMap from 'lodash.flatmap'
 import { useMemo } from 'react'
 

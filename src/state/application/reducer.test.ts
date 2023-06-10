@@ -1,4 +1,4 @@
-import { ChainId } from '@alex_7/sdk'
+import { ChainId } from '@paiswap/sdk'
 import { createStore, Store } from 'redux'
 import { addPopup, removePopup, toggleSettingsMenu, toggleWalletModal, updateBlockNumber } from './actions'
 import reducer, { ApplicationState } from './reducer'

@@ -1,4 +1,4 @@
-import { Currency } from '@alex_7/sdk'
+import { Currency } from '@paiswap/sdk'
 import React, { useCallback, useEffect, useState } from 'react'
 import useLast from '../../hooks/useLast'
 import { useSelectedListUrl } from '../../state/lists/hooks'

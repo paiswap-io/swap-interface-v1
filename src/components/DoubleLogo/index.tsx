@@ -1,4 +1,4 @@
-import { Currency } from '@alex_7/sdk'
+import { Currency } from '@paiswap/sdk'
 import React from 'react'
 import styled from 'styled-components'
 import CurrencyLogo from '../CurrencyLogo'
